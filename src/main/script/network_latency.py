@@ -7,23 +7,23 @@ import json
 def config_network(network, targets):
     num_targets = len(targets)
     num_bands = num_targets + 1
-    print(['tc', 'qdisc', 'del', 'dev', network, 'root'])
-    print(['tc', 'qdisc', 'add', 'dev', network, 'root', 'handle', '1:', 'prio', 'bands', str(num_bands)])
+    subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
+    subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'root', 'handle', '1:', 'prio', 'bands', str(num_bands)])
     
     counter = 1
     handle_counter = 2
     for t in targets:
         ip = t['target']
         lat = t['latency']
-        print(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(counter),
+        subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(counter),
                         'handle', '{}:'.format(handle_counter), 'netem', 'delay', '{}ms'.format(lat)])
-        print(['tc', 'filter', 'add', 'dev', network, 'parent', '1:0', 'protocol', 'ip', 'prio', '1',
+        subprocess.run(['tc', 'filter', 'add', 'dev', network, 'parent', '1:0', 'protocol', 'ip', 'prio', '1',
                         'match', 'ip', 'dst', ip, 'flowid', '{}:1'.format(handle_counter)])
         counter += 1
         handle_counter += 1
 
 def unconfig_network(network):
-    print(['tc', 'qdisc', 'del', 'dev', network, 'root'])
+    subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
 
 def print_help():
     print("Usage:\t network_latency add local_ip network_interface")
