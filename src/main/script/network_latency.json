@@ -1,0 +1,116 @@
+[
+	{
+		"local": "a",
+		"targets": [{
+			"target": "b",
+			"latency": 69
+		},{
+			"target": "c",
+			"latency": 70
+		},{
+			"target": "d",
+			"latency": 75
+		},{
+			"target": "e",
+			"latency": 67
+		},{
+			"target":"f",
+			"latency": 140
+		}]
+	},
+	{
+		"local": "b",
+		"targets": [{
+			"target": "c",
+			"latency": 35
+		},{
+			"target": "d",
+			"latency": 37
+		},{
+			"target": "e",
+			"latency": 38
+		},{
+			"target": "f",
+			"latency": 75
+		},{
+			"target": "a",
+			"latency": 68
+		}]
+	},
+	{
+		"local": "c",
+		"targets": [{
+			"target": "d",
+			"latency": 40
+		},{
+			"target": "e",
+			"latency": 44
+		},{
+			"target": "f",
+			"latency": 78
+		},{
+			"target": "a",
+			"latency": 72
+		},{
+			"target": "b",
+			"latency": 35
+		}]
+	},
+	{
+		"local": "d",
+		"targets": [{
+			"target": "e",
+			"latency": 37
+		},{
+			"target": "f",
+			"latency": 80
+		},{
+			"target": "a",
+			"latency": 64
+		},{
+			"target": "b",
+			"latency": 39
+		},{
+			"target": "c",
+			"latency": 42
+		}]
+	},
+	{
+		"local": "e",
+		"targets": [{
+			"target": "f",
+			"latency": 75
+		},{
+			"target": "a",
+			"latency": 73
+		},{
+			"target": "b",
+			"latency": 41
+		},{
+			"target": "c",
+			"latency": 42
+		},{
+			"target": "d",
+			"latency": 37
+		}]
+	},
+	{
+		"local": "f",
+		"targets": [{
+			"target": "a",
+			"latency": 151
+		},{
+			"target": "b",
+			"latency": 77
+		},{
+			"target": "c",
+			"latency": 78
+		},{
+			"target": "d",
+			"latency": 76
+		},{
+			"target": "e",
+			"latency": 79
+		}]
+	}
+]
