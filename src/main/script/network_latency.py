@@ -4,9 +4,12 @@ import sys
 import subprocess
 import json
 
-def config_network(network, targets, mapping):
+def config_network(network, targets, mapping, params):
     num_targets = len(targets)
     num_bands = num_targets + 1
+    
+    lat_ratio = params['latency_ratio']
+    
     subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
     subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'root', 'handle', '1:', 'prio', 'bands', str(num_bands)])
     
@@ -14,7 +17,7 @@ def config_network(network, targets, mapping):
     handle_counter = 2
     for t in targets:
         ip = mapping[t['target']]
-        lat = t['latency']
+        lat = int(t['latency'] * lat_ratio)
         subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(counter),
                         'handle', '{}:'.format(handle_counter), 'netem', 'delay', '{}ms'.format(lat)])
         subprocess.run(['tc', 'filter', 'add', 'dev', network, 'parent', '1:0', 'protocol', 'ip', 'prio', '1',
@@ -40,7 +43,7 @@ if __name__ == '__main__':
             network = sys.argv[3]
             for i in json['topology']:
                 if i['local'] == local_ip:
-                    config_network(network, i['targets'], json['mapping'])
+                    config_network(network, i['targets'], json['mapping'], json['params'])
                     exit()
             print('the given ip not found in config file')
     elif sys.argv[1] == 'remove':
