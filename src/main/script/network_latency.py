@@ -4,7 +4,7 @@ import sys
 import subprocess
 import json
 
-def config_network(network, targets):
+def config_network(network, targets, mapping):
     num_targets = len(targets)
     num_bands = num_targets + 1
     subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
@@ -13,7 +13,7 @@ def config_network(network, targets):
     counter = 1
     handle_counter = 2
     for t in targets:
-        ip = t['target']
+        ip = mapping[t['target']]
         lat = t['latency']
         subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(counter),
                         'handle', '{}:'.format(handle_counter), 'netem', 'delay', '{}ms'.format(lat)])
@@ -38,9 +38,9 @@ if __name__ == '__main__':
             json = json.load(json_data)
             local_ip = sys.argv[2]
             network = sys.argv[3]
-            for i in json:
+            for i in json['topology']:
                 if i['local'] == local_ip:
-                    config_network(network, i['targets'])
+                    config_network(network, i['targets'], json['mapping'])
                     exit()
             print('the given ip not found in config file')
     elif sys.argv[1] == 'remove':
