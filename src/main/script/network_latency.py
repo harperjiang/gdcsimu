@@ -20,7 +20,7 @@ def config_network(network, targets, mapping, params):
         subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(handle_counter + 1),
                         'handle', '{}:'.format(handle_counter + 1), 'netem', 'delay', '{}ms'.format(lat)])
         subprocess.run(['tc', 'filter', 'add', 'dev', network, 'protocol', 'ip', 'parent', '1:', 'prio', '1',
-                        'u32', 'match', 'ip', 'dst', ip, 'flowid', '1:{}'.format(handle_counter)])
+                        'u32', 'match', 'ip', 'dst', ip, 'flowid', '1:{}'.format(handle_counter + 1)])
         handle_counter += 1
     # Direct all remaining traffic
     subprocess.run(['tc', 'filter', 'add' , 'dev', network,
