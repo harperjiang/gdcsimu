@@ -5,7 +5,8 @@
 		"c": "10.140.83.5",
 		"d": "10.140.83.7",
 		"e": "10.140.83.8",
-		"f": "10.140.83.81"
+		"f": "10.140.83.81",
+		"client":"10.140.83.0"
 	},
 	"params": {
 		"latency_ratio":0.2
@@ -28,6 +29,9 @@
 		},{
 			"target":"f",
 			"latency": 140
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	},
 	{
@@ -47,6 +51,9 @@
 		},{
 			"target": "a",
 			"latency": 68
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	},
 	{
@@ -66,6 +73,9 @@
 		},{
 			"target": "b",
 			"latency": 35
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	},
 	{
@@ -85,6 +95,9 @@
 		},{
 			"target": "c",
 			"latency": 42
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	},
 	{
@@ -104,6 +117,9 @@
 		},{
 			"target": "d",
 			"latency": 37
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	},
 	{
@@ -123,6 +139,9 @@
 		},{
 			"target": "e",
 			"latency": 79
+		},{
+			"target":"client",
+			"latency": 13
 		}]
 	}
 ]
