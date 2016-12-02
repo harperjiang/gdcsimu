@@ -9,73 +9,73 @@
 		"client":"10.140.83.0"
 	},
 	"params": {
-		"latency_ratio":0.2
+		"latency_ratio": 1
 	},
 	"topology": [
 	{
 		"local": "a",
 		"targets": [{
 			"target": "b",
-			"latency": 69
+			"latency": 12
 		},{
 			"target": "c",
-			"latency": 70
+			"latency": 11
 		},{
 			"target": "d",
-			"latency": 75
+			"latency": 13
 		},{
 			"target": "e",
-			"latency": 67
+			"latency": 28
 		},{
 			"target":"f",
-			"latency": 140
+			"latency": 34
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	},
 	{
 		"local": "b",
 		"targets": [{
 			"target": "c",
-			"latency": 35
+			"latency": 15
 		},{
 			"target": "d",
-			"latency": 37
+			"latency": 13
 		},{
 			"target": "e",
-			"latency": 38
+			"latency": 26
 		},{
 			"target": "f",
-			"latency": 75
+			"latency": 31
 		},{
 			"target": "a",
-			"latency": 68
+			"latency": 13
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	},
 	{
 		"local": "c",
 		"targets": [{
 			"target": "d",
-			"latency": 40
+			"latency": 15
 		},{
 			"target": "e",
-			"latency": 44
+			"latency": 33
 		},{
 			"target": "f",
-			"latency": 78
+			"latency": 29
 		},{
 			"target": "a",
-			"latency": 72
+			"latency": 10
 		},{
 			"target": "b",
-			"latency": 35
+			"latency": 12
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	},
 	{
@@ -85,63 +85,63 @@
 			"latency": 37
 		},{
 			"target": "f",
-			"latency": 80
+			"latency": 32
 		},{
 			"target": "a",
-			"latency": 64
+			"latency": 12
 		},{
 			"target": "b",
-			"latency": 39
+			"latency": 13
 		},{
 			"target": "c",
-			"latency": 42
+			"latency": 14
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	},
 	{
 		"local": "e",
 		"targets": [{
 			"target": "f",
-			"latency": 75
+			"latency": 52
 		},{
 			"target": "a",
-			"latency": 73
+			"latency": 21
 		},{
 			"target": "b",
-			"latency": 41
+			"latency": 24
 		},{
 			"target": "c",
-			"latency": 42
+			"latency": 23
 		},{
 			"target": "d",
-			"latency": 37
+			"latency": 24
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	},
 	{
 		"local": "f",
 		"targets": [{
 			"target": "a",
-			"latency": 151
+			"latency": 26
 		},{
 			"target": "b",
-			"latency": 77
+			"latency": 21
 		},{
 			"target": "c",
-			"latency": 78
+			"latency": 23
 		},{
 			"target": "d",
-			"latency": 76
+			"latency": 22
 		},{
 			"target": "e",
-			"latency": 79
+			"latency": 48
 		},{
 			"target":"client",
-			"latency": 50
+			"latency": 20
 		}]
 	}
 ]
