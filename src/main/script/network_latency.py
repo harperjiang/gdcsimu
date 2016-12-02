@@ -24,7 +24,7 @@ def config_network(network, targets, mapping, params):
         handle_counter += 1
     # Direct all remaining traffic
     subprocess.run(['tc', 'filter', 'add' , 'dev', network,
-                    'protocol', 'ip' 'parent', '1:' , 'prio', '2',
+                    'protocol', 'ip', 'parent', '1:' , 'prio', '2',
                     'u32', 'match', 'ip' , 'src', '0.0.0.0/0', 'flowid', '1:1'])
 
 def unconfig_network(network):
