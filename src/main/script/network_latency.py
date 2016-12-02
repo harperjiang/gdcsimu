@@ -17,7 +17,7 @@ def config_network(network, targets, mapping, params):
     for t in targets:
         ip = mapping[t['target']]
         lat = int(t['latency'] * lat_ratio)
-        subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(handle_counter),
+        subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(handle_counter + 1),
                         'handle', '{}:'.format(handle_counter + 1), 'netem', 'delay', '{}ms'.format(lat)])
         subprocess.run(['tc', 'filter', 'add', 'dev', network, 'protocol', 'ip', 'parent', '1:', 'prio', '1',
                         'u32', 'match', 'ip', 'dst', ip, 'flowid', '1:{}'.format(handle_counter)])
