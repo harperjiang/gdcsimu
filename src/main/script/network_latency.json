@@ -31,7 +31,7 @@
 			"latency": 140
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	},
 	{
@@ -53,7 +53,7 @@
 			"latency": 68
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	},
 	{
@@ -75,7 +75,7 @@
 			"latency": 35
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	},
 	{
@@ -97,7 +97,7 @@
 			"latency": 42
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	},
 	{
@@ -119,7 +119,7 @@
 			"latency": 37
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	},
 	{
@@ -141,7 +141,7 @@
 			"latency": 79
 		},{
 			"target":"client",
-			"latency": 13
+			"latency": 50
 		}]
 	}
 ]
