@@ -8,7 +8,7 @@
 		"f": "10.140.83.81"
 	},
 	"params": {
-		"latency_ratio":0.5
+		"latency_ratio":0.2
 	},
 	"topology": [
 	{
