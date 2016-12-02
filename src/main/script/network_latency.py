@@ -13,17 +13,20 @@ def config_network(network, targets, mapping, params):
     subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
     subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'root', 'handle', '1:', 'prio', 'bands', str(num_bands)])
     
-    counter = 1
-    handle_counter = 2
+    handle_counter = 1
     for t in targets:
         ip = mapping[t['target']]
         lat = int(t['latency'] * lat_ratio)
-        subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(counter),
-                        'handle', '{}:'.format(handle_counter), 'netem', 'delay', '{}ms'.format(lat)])
-        subprocess.run(['tc', 'filter', 'add', 'dev', network, 'parent', '1:0', 'protocol', 'ip', 'prio', '1',
-                        'u32', 'match', 'ip', 'dst', ip, 'flowid', '{}:1'.format(handle_counter)])
+        subprocess.run(['tc', 'qdisc', 'add', 'dev', network, 'parent', '1:{}'.format(handle_counter),
+                        'handle', '{}:'.format(handle_counter + 1), 'netem', 'delay', '{}ms'.format(lat)])
+        subprocess.run(['tc', 'filter', 'add', 'dev', network, 'protocol', 'ip', 'parent', '1:', 'prio', '1',
+                        'u32', 'match', 'ip', 'dst', ip, 'flowid', '1:{}'.format(handle_counter)])
         counter += 1
         handle_counter += 1
+    # Direct all remaining traffic
+    subprocess.run(['tc', 'filter', 'add' , 'dev', network,
+                    'protocol', 'ip' 'parent', '1:' , 'prio', '2',
+                    'u32', 'match', 'ip' , 'src', '0.0.0.0/0', 'flowid', '1:1'])
 
 def unconfig_network(network):
     subprocess.run(['tc', 'qdisc', 'del', 'dev', network, 'root'])
