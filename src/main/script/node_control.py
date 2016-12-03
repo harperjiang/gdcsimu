@@ -24,7 +24,7 @@ def stop_node():
         # Use removenode
         subprocess.run(['/home/cc/cassandra/bin/nodetool','removenode',id])
     except subprocess.CalledProcessError as e:
-        print e.output
+        print(e.output)
 
 def start_node():
     subprocess.run(['/home/cc/cassandra/bin/cassandra'])
