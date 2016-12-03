@@ -18,12 +18,12 @@ def kill_process():
 def stop_node():
     try:
         # Query local UUID
-        output = subprocess.check_output(['/home/cc/cassandra/bin/nodetool','info'], universal_newlines=True)
+        output = subprocess.check_output(['/home/cc/cassandra/bin/nodetool', 'info'], universal_newlines=True)
         id = output.split(os.linesep)[0].split()[2]
         # kill process
         kill_process()
-        # Use removenode
-        subprocess.run(['/home/cc/cassandra/bin/nodetool','removenode',id])
+        # Use removenode on seed
+        subprocess.run(['/home/cc/cassandra/bin/nodetool', '-h', '10.140.83.2', 'removenode', id])
     except subprocess.CalledProcessError as e:
         print(e.output)
 
