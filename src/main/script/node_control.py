@@ -3,6 +3,7 @@
 import sys
 import os
 import subprocess
+from time import sleep
 
 def kill_process():
     p1 = subprocess.Popen(["ps", "aux"], stdout=subprocess.PIPE)
@@ -22,6 +23,8 @@ def stop_node():
         id = output.split(os.linesep)[0].split()[2]
         # kill process
         kill_process()
+        # Wait for the info to be passed to seed
+        sleep(15)
         # Use removenode on seed
         subprocess.run(['/home/cc/cassandra/bin/nodetool', '-h', '10.140.83.2', 'removenode', id])
     except subprocess.CalledProcessError as e:
