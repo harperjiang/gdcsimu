@@ -10,7 +10,7 @@ def kill_process():
     out, err = p2.communicate()
     
     for line in out.split(os.linesep):
-        if line.startsWith('cc'):
+        if line.startswith('cc'):
             pid = line.split()[1]
             subprocess.run(['kill', '-9', pid])
             return
