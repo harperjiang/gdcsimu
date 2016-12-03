@@ -12,7 +12,7 @@ def kill_process():
         if line.startsWith('cc'):
             pid = line.split()[1]
             subprocess.run(['kill', '-9', pid])
-            exit()
+            return
 
 def stop_node():
     try:
