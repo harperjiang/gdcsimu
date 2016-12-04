@@ -31,7 +31,7 @@ def stop_node():
         while True:
             status = subprocess.check_output([nodetool, '-h', host, 'status'], universal_newlines=True)
             for line in status.split(os.linesep):
-                if line.contains(id) and line.startswith('DN'):
+                if id in line and line.startswith('DN'):
                     # Use removenode on seed
                     subprocess.run([nodetool, '-h', host, 'removenode', id])
                     return
