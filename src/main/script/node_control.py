@@ -41,7 +41,7 @@ def stop_node():
 
 def start_node():
     subprocess.run(['nohup', cassandra])
-    sleep(5)
+    sleep(1)
     while True:
         res = subprocess.run([nodetool, 'info'])
         if res.returncode == 0:
