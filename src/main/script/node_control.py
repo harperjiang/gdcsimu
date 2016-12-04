@@ -41,6 +41,7 @@ def stop_node():
 
 def start_node():
     subprocess.run([cassandra])
+    sleep(10) 
     
 if __name__ == "__main__":
     if len(sys.argv) < 2:
