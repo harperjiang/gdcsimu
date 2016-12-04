@@ -40,8 +40,12 @@ def stop_node():
         print(e.output)
 
 def start_node():
-    subprocess.run([cassandra])
-    sleep(10) 
+    subprocess.run(['nohup', cassandra])
+    sleep(5)
+    while True:
+        res = subprocess.run([nodetool, 'info'])
+        if res.returncode == 0:
+            return
     
 if __name__ == "__main__":
     if len(sys.argv) < 2:
