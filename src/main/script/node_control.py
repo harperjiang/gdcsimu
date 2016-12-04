@@ -29,7 +29,7 @@ def stop_node():
         kill_process()
         # Wait for the info to be passed to seed
         while True:
-            status = subprocess.check_output([nodetool, '-h', host, status], universal_newlines=True)
+            status = subprocess.check_output([nodetool, '-h', host, 'status'], universal_newlines=True)
             for line in status.split(os.linesep):
                 if line.contains(id) and line.startswith('DN'):
                     # Use removenode on seed
