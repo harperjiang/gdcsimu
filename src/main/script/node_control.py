@@ -35,7 +35,7 @@ def stop_node():
                     # Use removenode on seed
                     subprocess.run([nodetool, '-h', host, 'removenode', id])
                     return
-            sleep(5)
+            sleep(1)
     except subprocess.CalledProcessError as e:
         print(e.output)
 
