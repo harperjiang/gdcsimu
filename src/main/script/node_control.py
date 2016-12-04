@@ -45,6 +45,8 @@ def start_node():
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         exit()
+    if len(sys.argv) == 3:
+        host = sys.argv[2]
     if sys.argv[1] == 'start':
         start_node()
     if sys.argv[1] == 'stop':
