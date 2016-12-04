@@ -7,11 +7,12 @@ interval = 1  # 120s
 
 def start_remote(node):
     print("Starting node {}".format(node))
+    subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py start"'])
     pass
 
 def stop_remote(node):
     print("Stopping node {}".format(node))
-    subprocess.run(['ssh',node,'-t','"python3 gdcsimu/src/main/script/node_control.py stop"'])
+    subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py stop"'])
     
     
 def load_config():
