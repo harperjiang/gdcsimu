@@ -6,6 +6,12 @@
 		"d": "10.140.83.7",
 		"e": "10.140.83.8",
 		"f": "10.140.83.81",
+		"a2": "10.140.83.86",
+		"b2": "10.140.83.11",
+		"c2": "10.140.83.13",
+		"d2": "10.140.83.14",
+		"e2": "10.140.83.88",
+		"f2": "10.140.83.12",
 		"client":"10.140.83.0"
 	},
 	"params": {
@@ -138,6 +144,138 @@
 			"latency": 22
 		},{
 			"target": "e",
+			"latency": 48
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "a2",
+		"targets": [{
+			"target": "b2",
+			"latency": 12
+		},{
+			"target": "c2",
+			"latency": 11
+		},{
+			"target": "d2",
+			"latency": 13
+		},{
+			"target": "e2",
+			"latency": 28
+		},{
+			"target":"f2",
+			"latency": 34
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "b2",
+		"targets": [{
+			"target": "c2",
+			"latency": 15
+		},{
+			"target": "d2",
+			"latency": 13
+		},{
+			"target": "e2",
+			"latency": 26
+		},{
+			"target": "f2",
+			"latency": 31
+		},{
+			"target": "a2",
+			"latency": 13
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "c2",
+		"targets": [{
+			"target": "d2",
+			"latency": 15
+		},{
+			"target": "e2",
+			"latency": 33
+		},{
+			"target": "f2",
+			"latency": 29
+		},{
+			"target": "a2",
+			"latency": 10
+		},{
+			"target": "b2",
+			"latency": 12
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "d2",
+		"targets": [{
+			"target": "e2",
+			"latency": 37
+		},{
+			"target": "f2",
+			"latency": 32
+		},{
+			"target": "a2",
+			"latency": 12
+		},{
+			"target": "b2",
+			"latency": 13
+		},{
+			"target": "c2",
+			"latency": 14
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "e2",
+		"targets": [{
+			"target": "f2",
+			"latency": 52
+		},{
+			"target": "a2",
+			"latency": 21
+		},{
+			"target": "b2",
+			"latency": 24
+		},{
+			"target": "c2",
+			"latency": 23
+		},{
+			"target": "d2",
+			"latency": 24
+		},{
+			"target":"client",
+			"latency": 20
+		}]
+	},
+	{
+		"local": "f2",
+		"targets": [{
+			"target": "a2",
+			"latency": 26
+		},{
+			"target": "b2",
+			"latency": 21
+		},{
+			"target": "c2",
+			"latency": 23
+		},{
+			"target": "d2",
+			"latency": 22
+		},{
+			"target": "e2",
 			"latency": 48
 		},{
 			"target":"client",
