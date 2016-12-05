@@ -9,24 +9,20 @@ import subprocess
 interval = 1  # 120s
 
 def setup_logger():
-    logging.basicConfig(level=logging.INFO)
-    rootlogger = logging.root
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    ch.setFormatter(formatter)
-    rootlogger.addHandler(ch)
+    logging.basicConfig(level=logging.INFO,
+                        stream=sys.stdout,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 def start_remote(node):
     logger = logging.getLogger("CC")
     logger.info("Starting node {}".format(node))
-    # subprocess.run(['ssh', node, '"python3 gdcsimu/src/main/script/node_control.py start"'])
+    subprocess.run(['ssh', node, '\"python3 gdcsimu/src/main/script/node_control.py start\"'])
     pass
 
 def stop_remote(node):
     logger = logging.getLogger("CC")
     logger.info("Stopping node {}".format(node))
-    # subprocess.run(['ssh', node, '"python3 gdcsimu/src/main/script/node_control.py stop"'])
+    subprocess.run(['ssh', node, '\"python3 gdcsimu/src/main/script/node_control.py stop\"'])
     
     
 def load_config():

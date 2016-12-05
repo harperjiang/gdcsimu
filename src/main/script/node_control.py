@@ -44,11 +44,22 @@ def stop_node():
 
 def start_node():
     subprocess.run(['nohup', cassandra])
-    sleep(1)
+    
     while True:
-        res = subprocess.run([nodetool, 'info'])
+        res = subprocess.run([nodetool, 'info'], stdout=subprocess.PIPE, universal_newlines=True)
         if res.returncode == 0:
-            return
+            id = res.stdout.split(os.linesep)[0].split()[2]
+            
+            while True:
+                status_info = subprocess.check_output([nodetool,'status']).split(os.linesep)
+                for line in status_info:
+                    if id in line:
+                        if line.startswith("UN"): # Started
+                            return
+                        else:
+                            break
+                sleep(1)
+        sleep(1)
     
 if __name__ == "__main__":
     if len(sys.argv) < 2:
