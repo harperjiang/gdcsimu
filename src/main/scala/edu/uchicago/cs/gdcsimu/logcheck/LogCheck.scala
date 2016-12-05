@@ -12,6 +12,16 @@ object LogCheck extends App {
     }
   }
 
+  // Process data to remove small gap
+  datas.foreach(data => {
+    System.out.println(data.mkString(""))
+    for (i <- 1 until 287) {
+      if (data(i - 1) == data(i + 1))
+        data(i) = data(i - 1)
+    }
+    System.out.println(data.mkString(""))
+  })
+
   // Look for single max
   datas.zipWithIndex.foreach(t => {
     System.out.println("%d:%d".format(t._2, t._1.sum))
@@ -60,6 +70,10 @@ object LogCheck extends App {
 
   System.out.println("%d,%d,%d:%d".format(max3._1, max3._2, max3._3, maxsum))
   System.out.println(lstpnter.mkString(","))
-  System.out.println(lstpnter.sliding(6, 6).map { _.sum match { case x if x <= 3 => 0 case _ => 1 } }.mkString(","))
+  System.out.println(datas(max3._1).sliding(6, 6).map { _.sum match { case x if x <= 3 => 0 case _ => 1 } }.mkString(""))
+  System.out.println(datas(max3._2).sliding(6, 6).map { _.sum match { case x if x <= 3 => 0 case _ => 1 } }.mkString(""))
+  System.out.println(datas(max3._3).sliding(6, 6).map { _.sum match { case x if x <= 3 => 0 case _ => 1 } }.mkString(""))
+
+  System.out.println(lstpnter.sliding(6, 6).map { _.sum match { case x if x <= 3 => 0 case _ => 1 } }.mkString(""))
 
 }
