@@ -7,16 +7,25 @@ import logging
 import subprocess
 
 interval = 1  # 120s
-logger = logging.getLogger('CC')
+
+def setup_logger():
+    logger = logging.getLogger('CC')
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    ch.setFormatter(formatter)
+    logger.addHandler(ch)
 
 def start_remote(node):
+    logger = logging.getLogger("CC")
     logger.info("Starting node {}".format(node))
-    subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py start"'])
+    subprocess.run(['ssh', node, '"python3 gdcsimu/src/main/script/node_control.py start"'])
     pass
 
 def stop_remote(node):
+    logger = logging.getLogger("CC")
     logger.info("Stopping node {}".format(node))
-    subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py stop"'])
+    subprocess.run(['ssh', node, '"python3 gdcsimu/src/main/script/node_control.py stop"'])
     
     
 def load_config():
@@ -36,6 +45,7 @@ def load_config():
         return mappings
     
 def cc_start():
+    logger = logging.getLogger("CC")
     logger.info('Starting Control Center')
     config = load_config()
     
@@ -59,6 +69,7 @@ def cc_start():
             time.sleep(interval)    
 
 def cc_stop(): 
+    logger = logging.getLogger("CC")
     logger.info('Stopping Control Center') 
     p1 = subprocess.Popen(["ps", "aux"], stdout=subprocess.PIPE)
     p2 = subprocess.Popen(["grep", "control_center.py"],
@@ -78,9 +89,10 @@ def print_help():
     print("Usage : control_center.py start/stop")    
 
 if __name__ == "__main__":
+    setup_logger()
     if len(sys.argv) == 1:
         print_help()
-        return
+        exit()
     if sys.argv[1] == 'start':
         cc_start()
     elif sys.argv[1] == 'stop':
