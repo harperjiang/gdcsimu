@@ -51,13 +51,17 @@ def start_node():
             id = res.stdout.split(os.linesep)[0].split()[2]
             
             while True:
-                status_info = subprocess.check_output([nodetool, 'status'], universal_newlines=True).split(os.linesep)
-                for line in status_info:
-                    if id in line:
-                        if line.startswith("UN"):  # Started
-                            return
-                        else:
-                            break
+                status = subprocess.run([nodetool, 'status'],
+                                                      stdout=subprocess.PIPE,
+                                                      universal_newlines=True);
+                if status.returncode == 0:
+                    status_info = status.stdout.split(os.linesep)
+                    for line in status_info:
+                        if id in line:
+                            if line.startswith("UN"):  # Started
+                                return
+                            else:
+                                break
                 sleep(1)
         sleep(1)
     
