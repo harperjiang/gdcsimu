@@ -7,7 +7,7 @@ from time import sleep
 
 cassandra = '/home/cc/cassandra/bin/cassandra'
 nodetool = '/home/cc/cassandra/bin/nodetool'
-#host = '10.140.83.2'
+# host = '10.140.83.2'
 host = 'cassandra-seed1'
 
 def kill_process():
@@ -16,7 +16,7 @@ def kill_process():
     out, err = p2.communicate()
     
     for line in out.split(os.linesep):
-        if line.startswith('cc'):
+        if line.startswith('cc') and ('grep' not in line):
             pid = line.split()[1]
             subprocess.run(['kill', '-9', pid])
             return

@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 import json
 import time
+import sys
+import os
+import logging
 import subprocess
 
 interval = 1  # 120s
+logger = logging.getLogger('CC')
 
 def start_remote(node):
-    print("Starting node {}".format(node))
+    logger.info("Starting node {}".format(node))
     subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py start"'])
     pass
 
 def stop_remote(node):
-    print("Stopping node {}".format(node))
+    logger.info("Stopping node {}".format(node))
     subprocess.run(['ssh', node, '-t', '"python3 gdcsimu/src/main/script/node_control.py stop"'])
     
     
@@ -31,16 +35,16 @@ def load_config():
             mapping['state'] = 1
         return mappings
     
-if __name__ == "__main__":
+def cc_start():
+    logger.info('Starting Control Center')
     config = load_config()
-    print(config)
     
     counter = 0
     while True:
         for item in config:
             trace = item['trace']
             if len(trace) <= counter:
-                print("Trace complete after {} loops. Exit".format(counter))
+                logger.info("Trace complete after {} loops. Exit".format(counter))
                 exit()
             node = item['node']
             current_state = item['state']
@@ -52,5 +56,32 @@ if __name__ == "__main__":
                     start_remote(node)
             item['state'] = next_state
             counter += 1
-            time.sleep(interval)
-            
+            time.sleep(interval)    
+
+def cc_stop(): 
+    logger.info('Stopping Control Center') 
+    p1 = subprocess.Popen(["ps", "aux"], stdout=subprocess.PIPE)
+    p2 = subprocess.Popen(["grep", "control_center.py"],
+                          stdin=p1.stdout, stdout=subprocess.PIPE, universal_newlines=True)
+    out, err = p2.communicate()
+    
+    for line in out.split(os.linesep):
+        if line.startswith('cc') and ('grep' not in line):
+            logger.info('Found Control Center Process, killing it')
+            pid = line.split()[1]
+            subprocess.run(['kill', '-9', pid])
+            return
+    logger.info("No running Control Center found, exiting")
+    return
+
+def print_help():
+    print("Usage : control_center.py start/stop")    
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print_help()
+        return
+    if sys.argv[1] == 'start':
+        cc_start()
+    elif sys.argv[1] == 'stop':
+        cc_stop()
