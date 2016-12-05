@@ -7,7 +7,8 @@ from time import sleep
 
 cassandra = '/home/cc/cassandra/bin/cassandra'
 nodetool = '/home/cc/cassandra/bin/nodetool'
-host = '10.140.83.2'
+#host = '10.140.83.2'
+host = 'cassandra-seed1'
 
 def kill_process():
     p1 = subprocess.Popen(["ps", "aux"], stdout=subprocess.PIPE)
